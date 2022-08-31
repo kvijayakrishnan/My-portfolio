@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VijayaKrishnan Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/eda3e2690f.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <div id="header">
+        <div class="container">
+            <nav>
+                <p class="logo-design"><span>V</span>ijay</p>
+                <ul id="sidemenu">
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <i class="fas fa-times" onclick="closemenu()"></i>
+                </ul>
+                <i class="fas fa-bars" onclick="openmenu()"></i>
+            </nav>
+            <div class="header-text">
+                <h1>Hi, I'm <br><span>K.Vijaya Krishnan <br></span><p>FULL STACT DEVELOPER</p> From India </h1>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!------------ About section -------------->
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-1">
+                    <img src="IMG_20210213_212349-01.jpeg">
+                </div>
+                <div class="about-col-2">
+                    <h1 class="sub-title">About Me</h1>
+                    <p>
+                        I'm a full stack web developer and innovative design and layout of the website.
+                    </p>
+                     <div class="tab-titles">
+                        <p class="tab-links active-link" onclick="opentab('skills')"> <b>Skills & Tools</b></p>
+                        <p class="tab-links" onclick="opentab('education')"> <b>Education</b></p>
+                    </div>
+                    <div class="tab-contents active-tab" id="skills">
+                        <ul>
+                            <li><span>HTML</span></li>
+                            <li><span>CSS</span></li>
+                            <li><span>JavaScript</span></li>
+                            <li><span>BootStrap</span></li>
+                            <li><span>GitHub</span></li>
+                            <li><span>MySql</span></li>
+                            <li><span>MongoDB</span></li>
+                            <li><span>ReactJS</span></li>
+                            <li><span>NodeJS</span></li>                            
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="education">
+                        <ul>
+                            <li><span>2011 DEEE</span><br>Srinivasa Polytechnic College</li>                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    
+    <!-------------contact section-------------->
+ <div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="sub-title">Contact Me</h1>
+                <p> <i class="fa-solid fa-envelope" ></i>vijayakrishnankbv@yahoo.in</p>
+                <p><i class="fa-solid fa-phone"></i>+91 9629278809</p>
+                <div id="social-icons">
+                    <a target="_blank" href="https://www.facebook.com/vijay11091"><i class="fa-brands fa-facebook"></i></a>
+                    <a target="_blank" href="https://www.instagram.com/vijayakrishnankbv/"><i class="fa-brands fa-instagram"></i></i></a>
+                    <a target="_blank" href="https://twitter.com/vijay58626316"><i class="fa-brands fa-twitter"></i></i></a>
+                    <a target="_blank" href="https://www.linkedin.com/in/vijay-krishnan-1a99aa228/"><i class="fa-brands fa-linkedin"></i></i></a>
+                </div>
+                <a href="my-cv.pdf" download class="btn btn2">Download CV</a>
+            </div>
+            <div class="cotact-right"></div>
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type="submit" class="btn btn2">Submit</button>
+                </form>
+                <span id="msg"></span>
+        </div>
+    </div>
+  
+ </div>
+    
+
+ <!-----------About page skills and Education view  ------------->
+    <script>
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents =document.getElementsByClassName("tab-contents");
+        function opentab(tabname){
+            for(tablink of tablinks){
+                tablink.classList.remove("active-link")
+            }
+            for(tabcontent of tabcontents){
+                tabcontent.classList.remove("active-tab")
+            }
+            event.currentTarget.classList.add("active-link")
+            document.getElementById(tabname).classList.add("active-tab")
+        }
+    </script>
+
+    <!--------------Side menu open close operation  ------------>
+    <script>
+        var sidemenu = document.getElementById("sidemenu");
+
+        function openmenu(){
+            sidemenu.style.right = "0"
+        }
+        function closemenu(){
+            sidemenu.style.right = "-200px"
+        }
+
+    </script>
+
+    <!----------------contact page submission and resting page with google sheet  -------->
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxrSel8yKynj6euPvQiQRO65THK7AyjkQmjeO8Qc_iC8nK7T5eU8n_3hPDC-RylMN8g/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg = document.getElementById("msg")
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                msg.innerHTML = "Message Sent successfully"
+                setTimeout(function(){
+                    msg.innerHTML = ""
+                },5000)
+                form.reset()
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+
+
+
+
+</body>
+</html>
